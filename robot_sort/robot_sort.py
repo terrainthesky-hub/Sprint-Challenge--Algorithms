@@ -96,10 +96,37 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
+        while True:
+          
+            self.swap_item()
+
+            if self.can_move_right()==True:
+                self.move_right()
+
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+                    
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+           
+            else:
+                if self.compare_item() == None:
+                    self.swap_item()
+
+                if not self.light_is_on():
+                    return
+
+                self.set_light_off()
+
+                while self.can_move_left() == True:
+                    self.move_left()
+
+
+        # return
         # Fill this out
-        pass
-
-
+        
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
